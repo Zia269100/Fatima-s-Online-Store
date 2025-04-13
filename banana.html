@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="C:/Users/ASUS/OneDrive/Desktop/store/logo.png" type="image/png">
+    <title>Fatima's Online Store</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f7cac9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #9bb7d4;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .product-details {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            margin: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-details img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-details h2 {
+            margin: 20px 0 10px;
+            color: #9bb7d4;
+        }
+
+        .product-details p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .product-details button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #9bb7d4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .product-details button:hover {
+            background-color: #7a99c3;
+        }
+
+        footer {
+            background-color: #9bb7d4;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>Fatima's Online Store</header>
+
+    <div class="product-details">
+        <img src="C:\Users\ASUS\OneDrive\Desktop\store\banana.jpeg" alt="Banana">
+        <h2>Banana</h2>
+        <p>Ripe bananas rich in potassium and energy.</p>
+        <p><strong>Price:</strong> ₹60/dozen</p>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <footer>Fatima Shaikh &nbsp;|&nbsp; Roll No. 90 &nbsp;|&nbsp; SyBcom</footer>
+
+    <script>
+        function addToCart() {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            if (isLoggedIn === "true") {
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                cart.push({
+                    name: "Banana",
+                    price: 60,
+                    image: "banana.jpeg"
+                });
+                localStorage.setItem("cart", JSON.stringify(cart));
+                alert("Banana added to cart!");
+            } else {
+                alert("Please login to add items to cart.");
+                window.location.href = "login.html";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

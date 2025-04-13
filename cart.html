@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="C:/Users/ASUS/OneDrive/Desktop/store/logo.png" type="image/png">
+    <title>Fatima's Online Store</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f7cac9;
+        }
+
+        .navbar {
+            background-color: #9bb7d4;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .navbar img {
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .navbar h1 {
+            flex-grow: 1;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .cart-container {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cart-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+
+        .cart-item h3 {
+            margin: 0;
+            color: #9bb7d4;
+        }
+
+        .cart-item p {
+            color: #555;
+        }
+
+        .checkout-btn {
+            background-color: #9bb7d4;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .checkout-btn:hover {
+            background-color: #7a99c3;
+        }
+
+        footer {
+            background-color: #9bb7d4;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <img src="C:\Users\ASUS\OneDrive\Desktop\store\logo.png" alt="Logo">
+        <h1>Fatima's Online Store</h1>
+        <a href="index.html">Home</a>
+        <a href="cart.html">Cart</a>
+    </div>
+
+    <div class="cart-container" id="cart-container">
+        <!-- Items will be added here dynamically -->
+    </div>
+
+    <div style="text-align: center;">
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>
+
+    <footer>
+        Fatima Shaikh &nbsp;|&nbsp; Roll No. 90 &nbsp;|&nbsp; SyBcom
+    </footer>
+
+    <script>
+        function checkout() {
+            alert("Order Successful!");
+            localStorage.removeItem('cart');
+            window.location.reload();
+        }
+
+        function removeItem(itemName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.name !== itemName);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.reload();
+        }
+
+        window.onload = function () {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let container = document.getElementById('cart-container');
+
+            if (cart.length === 0) {
+                container.innerHTML = "<p>Your cart is empty.</p>";
+                return;
+            }
+
+            cart.forEach(item => {
+                let cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="C:/Users/ASUS/OneDrive/Desktop/store/${item.image}" alt="${item.name}">
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p>₹${item.price}</p>
+                    </div>
+                    <button class="remove-btn" onclick="removeItem('${item.name}')">Remove</button>
+                `;
+                container.appendChild(cartItem);
+            });
+        }
+    </script>
+
+</body>
+</html>

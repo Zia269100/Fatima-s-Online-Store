@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="C:/Users/ASUS/OneDrive/Desktop/store/logo.png" type="image/png">
+    <title>Fatima's Online Store</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f7cac9;
+        }
+
+        .navbar {
+            background-color: #9bb7d4;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .navbar img {
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .navbar h1 {
+            flex-grow: 1;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .product {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .product h3 {
+            margin: 10px 0 5px;
+            color: #9bb7d4;
+        }
+
+        .product p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .product a,
+        .product button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #9bb7d4;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #7a99c3;
+        }
+
+        footer {
+            background-color: #9bb7d4;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        #about {
+            background-color: white;
+            padding: 20px;
+            margin: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <img src="C:\Users\ASUS\OneDrive\Desktop\store\logo.png" alt="Logo">
+        <h1>Fatima's Online Store</h1>
+        <a href="index.html">Home</a>
+        <a href="#about">About Us</a>
+        <a href="cart.html">Cart</a>
+    </div>
+
+    <div class="container">
+        <div class="product">
+            <img src="C:\Users\ASUS\OneDrive\Desktop\store\apple.jpeg" alt="Apple">
+            <h3>Apple</h3>
+            <p>₹120/kg</p>
+            <a href="apple.html">View Product</a>
+            <br>
+            <button onclick="addToCart('Apple', 120, 'apple.jpeg')">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\ASUS\OneDrive\Desktop\store\mango.jpeg" alt="Mango">
+            <h3>Mango</h3>
+            <p>₹150/kg</p>
+            <a href="mango.html">View Product</a>
+            <br>
+            <button onclick="addToCart('Mango', 150, 'mango.jpeg')">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\ASUS\OneDrive\Desktop\store\banana.jpeg" alt="Banana">
+            <h3>Banana</h3>
+            <p>₹60/dozen</p>
+            <a href="banana.html">View Product</a>
+            <br>
+            <button onclick="addToCart('Banana', 60, 'banana.jpeg')">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\ASUS\OneDrive\Desktop\store\chikoo.jpeg" alt="Chikoo">
+            <h3>Chikoo</h3>
+            <p>₹90/kg</p>
+            <a href="chikoo.html">View Product</a>
+            <br>
+            <button onclick="addToCart('Chikoo', 90, 'chikoo.jpeg')">Add to Cart</button>
+        </div>
+    </div>
+
+    <div id="about">
+        <h2>About Us</h2>
+        <p>Fatima Shaikh<br>Roll no. 90<br>SyBcom</p>
+    </div>
+
+    <footer>
+        Fatima Shaikh &nbsp;|&nbsp; Roll No. 90 &nbsp;|&nbsp; SyBcom
+    </footer>
+
+    <script>
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name, price, image });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(name + " added to cart!");
+        }
+    </script>
+
+</body>
+
+</html>
